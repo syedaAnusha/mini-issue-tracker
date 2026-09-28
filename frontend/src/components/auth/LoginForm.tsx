@@ -75,7 +75,7 @@ export function LoginForm() {
 
           <Button
             type="submit"
-            className="w-full bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
+            className="w-full cursor-pointer bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
             disabled={!isValid}
           >
             Login

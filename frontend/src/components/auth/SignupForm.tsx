@@ -48,7 +48,9 @@ export function SignupForm() {
               {...register('name')}
             />
             {errors.name && (
-              <p className="text-destructive text-xs">{errors.name.message}</p>
+              <p className="text-xs text-[var(--auth-error)]">
+                {errors.name.message}
+              </p>
             )}
           </div>
 
@@ -63,7 +65,9 @@ export function SignupForm() {
               {...register('email')}
             />
             {errors.email && (
-              <p className="text-destructive text-xs">{errors.email.message}</p>
+              <p className="text-xs text-[var(--auth-error)]">
+                {errors.email.message}
+              </p>
             )}
           </div>
 
@@ -77,6 +81,11 @@ export function SignupForm() {
                 aria-invalid={Boolean(errors.password)}
                 {...register('password')}
               />
+              {errors.password && (
+                <p className="text-xs text-[var(--auth-error)]">
+                  {errors.password.message}
+                </p>
+              )}
             </div>
             <div className="space-y-2">
               <Label htmlFor="confirm-password">Confirm Password</Label>
@@ -87,19 +96,18 @@ export function SignupForm() {
                 aria-invalid={Boolean(errors.confirmPassword)}
                 {...register('confirmPassword')}
               />
+              {errors.confirmPassword && (
+                <p className="text-xs text-[var(--auth-error)]">
+                  {errors.confirmPassword.message}
+                </p>
+              )}
             </div>
           </div>
-
-          {(errors.password || errors.confirmPassword) && (
-            <p className="text-destructive text-xs">
-              {errors.password?.message ?? errors.confirmPassword?.message}
-            </p>
-          )}
           <p className="text-muted-foreground text-xs">{passwordGuidance}</p>
 
           <Button
             type="submit"
-            className="w-full bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
+            className="w-full cursor-pointer bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
             disabled={!isValid}
           >
             Create Account

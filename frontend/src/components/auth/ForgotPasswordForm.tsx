@@ -48,7 +48,7 @@ export function ForgotPasswordForm() {
               {...register('email')}
             />
             {errors.email && (
-              <p className="text-xs text-(--auth-error)">
+              <p className="text-xs text-[var(--auth-error)]">
                 {errors.email.message}
               </p>
             )}
@@ -63,6 +63,11 @@ export function ForgotPasswordForm() {
               aria-invalid={Boolean(errors.password)}
               {...register('password')}
             />
+            {errors.password && (
+              <p className="text-xs text-[var(--auth-error)]">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <div className="space-y-2">
@@ -74,18 +79,17 @@ export function ForgotPasswordForm() {
               aria-invalid={Boolean(errors.confirmPassword)}
               {...register('confirmPassword')}
             />
+            {errors.confirmPassword && (
+              <p className="text-xs text-[var(--auth-error)]">
+                {errors.confirmPassword.message}
+              </p>
+            )}
           </div>
-
-          {errors.password || errors.confirmPassword ? (
-            <p className="text-xs text-(--auth-error)">
-              {errors.password?.message ?? errors.confirmPassword?.message}
-            </p>
-          ) : null}
           <p className="text-muted-foreground text-xs">{passwordGuidance}</p>
 
           <Button
             type="submit"
-            className="w-full bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
+            className="w-full cursor-pointer bg-[#4f46a5] text-white hover:bg-[#37327f] disabled:bg-[#4f46a5] disabled:text-white"
             disabled={!isValid}
           >
             Reset Password

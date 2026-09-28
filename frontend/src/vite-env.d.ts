@@ -19,3 +19,41 @@ declare module '@tanstack/query-core' {
     constructor(config?: Record<string, unknown>)
   }
 }
+
+declare module 'react-hook-form' {
+  export interface FieldError {
+    type: string
+    message?: string
+  }
+
+  export type Resolver<TFieldValues> = (values: TFieldValues) =>
+    | Promise<{
+        values: Partial<TFieldValues>
+        errors: Record<string, FieldError>
+      }>
+    | {
+        values: Partial<TFieldValues>
+        errors: Record<string, FieldError>
+      }
+
+  export function useForm<
+    TFieldValues extends Record<string, unknown>,
+  >(options: {
+    resolver: Resolver<TFieldValues>
+    mode?: 'onChange' | 'onBlur' | 'onSubmit'
+  }): {
+    register: (name: keyof TFieldValues & string) => {
+      name: string
+      onChange: (event: { target: { value: string } }) => void
+      onBlur: () => void
+      ref: (element: HTMLInputElement | null) => void
+    }
+    handleSubmit: (
+      onValid: (values: TFieldValues) => void,
+    ) => (event?: { preventDefault: () => void }) => void
+    formState: {
+      errors: Partial<Record<keyof TFieldValues, FieldError>>
+      isValid: boolean
+    }
+  }
+}

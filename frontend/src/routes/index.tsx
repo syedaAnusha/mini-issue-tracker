@@ -1,4 +1,4 @@
 import { createFileRoute } from '@tanstack/react-router'
-import { HomePage } from '../components/common/HomePage'
+import { LoginForm } from '../components/auth/LoginForm'
 
-export const Route = createFileRoute('/')({ component: HomePage })
+export const Route = createFileRoute('/')({ component: LoginForm })

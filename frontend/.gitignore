@@ -1,4 +1,10 @@
-# Logs
+.kilo/
+.tanstack/
+.github/
+
+node_modules/
+dist/
+*.local# Logs
 logs
 *.log
 npm-debug.log*

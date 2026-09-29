@@ -36,6 +36,10 @@ export const loginSchema = z.object({
   password: z.string().min(1, 'Password is required.'),
 })
 
+export const emailVerificationSchema = z.object({
+  email: z.email('Enter a valid email address.'),
+})
+
 export const signupSchema = withMatchingPasswords({
   name: z
     .string()
@@ -49,12 +53,16 @@ export const forgotPasswordSchema = withMatchingPasswords({
   email: z.email('Enter a valid email address.'),
 })
 
+export const resetPasswordSchema = withMatchingPasswords({})
+
 export type LoginValues = z.infer<typeof loginSchema>
+export type EmailVerificationValues = z.infer<typeof emailVerificationSchema>
 export type SignupValues = z.infer<typeof signupSchema>
 export type ForgotPasswordValues = z.infer<typeof forgotPasswordSchema>
+export type ResetPasswordValues = z.infer<typeof resetPasswordSchema>
 
 export const passwordGuidance =
-  'Use at least 8 characters with an uppercase letter, number, symbol, and letter.'
+  'Use at least 8 characters with an uppercase letter, number, and symbol.'
 
 export function zodResolver<T extends z.ZodType>(
   schema: T,
